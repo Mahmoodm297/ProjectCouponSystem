@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Create Company</title>
+<script>
+
+	var xmlhttp;
+	function init() {
+		
+		xmlhttp=new XMLHttpRequest ();
+	}
+	
+	function setDetails() {
+		alert("set details");
+		var compid=document.getElementById("compid");
+		var compname=document.getElementById("compname"); 
+		var compemail=document.getElementById("compemail");
+		var comppass=document.getElementById("comppass");
+		var url = "http://localhost:8080/Coupons/rest/adminServices/createcompany?id="+compid.value+"&name="+compname.value+"&email="+compemail.value+"&pass="+comppass.value;
+		xmlhttp.open('POST',url, true);
+		xmlhttp.send(null);
+		alert("SENT");
+	}
+</script>
+</head>
+
+<body onload="init()">
+
+	<h1>Call Admin Service</h1>
+	 <table>
+	 	<tr>
+	 		<td>Enter CompanyId</td>
+	 		<td><input type="text" id="compid" size="10" /></td>
+	 	</tr>	
+	 	
+	 	<tr>
+	 		<td>Enter Company Name</td>
+	 		<td><input type="text" id="compname" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Enter Company Email</td>
+	 		<td><input type="text" id="compemail" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Enter Company Password</td>
+	 		<td><input type="password" id="comppass" size="30"/><input type="button" value="Add Company" onClick="setDetails()"/></td>
+	 	</tr>
+	 	
+	 </table>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Get Customer</title>
+<script> 
+
+	var xmlhttp;
+	function init (){
+		xmlhttp=new XMLHttpRequest ();
+	}
+function getDetails (){
+		var customer=document.getElementById("customerId");
+		var url = "http://localhost:8080/Coupons/rest/adminServices/getcustomer?customerId="+customer.value;
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send(null);
+		xmlhttp.onreadystatechange=function(){
+			
+			var customername=document.getElementById("customername"); 
+			var customerpass=document.getElementById("customerpass");
+
+			if(xmlhttp.readyState == 4){
+				if(xmlhttp.status == 200){
+					
+					var det= eval("(" + xmlhttp.responseText+")");	
+					if(customer.value > 0){
+			
+						customername.value=det.name;
+						customerpass.valie=det.password;
+					}
+					else{
+						compname.value="";
+						compemail.value="";
+						aler(" Invalid Customer Id ");
+					}
+				}
+				else { 
+					
+					alert("Error -->" +xmlhttp.responseText);
+				}
+			}
+		}
+}
+</script>
+</head>
+
+<body onload="init()">
+
+	<h1>Call Admin Service</h1>
+	 <table>
+	 	<tr>
+	 		<td>Enter CustomerId</td>
+	 		<td><input type="text" id="customerId" size="10" /> <input type="button" value="Get Info" onClick="getDetails()"/>
+	 	</tr>	
+	 	
+	 	<tr>
+	 		<td>Customer Name</td>
+	 		<td><input type="text" readonly="true"  id="customername" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Customer Password</td>
+	 		<td><input type="text" readonly="true"  id="customerpass" size="30"/></td>
+	 	</tr>
+	 </table>
+
+</body>
+</html>

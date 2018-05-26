@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Update Coupon</title>
+<script>
+
+	var xmlhttp;
+	function init() {
+		
+		xmlhttp=new XMLHttpRequest ();
+		alert("xml");
+	}
+	
+	function updateDetails(){
+		alert("update");
+		var coupon=document.getElementById("coouponId");
+		var coupontitle=document.getElementById("coupontitle");
+		var startdate=document.getElementById("startdate");
+		var enddate=document.getElementById("enddate");
+		var amount=document.getElementById("amount");
+		var type=document.getElementById("type");
+		var message=document.getElementById("message");
+		var price=document.getElementById("price");
+		var image=document.getElementById("image");
+		var url = "http://localhost:8080/Coupons/rest/adminServices/updatecoupon?id="+compid.value+
+				"&coupontitle="+coupontitle.value+"&startdate="+startdate.value+"&enddate="+enddate.value+
+				"&amount="+amount.value+"&type="+type.value+ "&message="+message.value+
+				"&price="+enddate.value+"&image="+image.value;
+		alert(url);
+		xmlhttp.open('PUT', url, true);
+		xmlhttp.send(null);
+}	
+</script>
+</head>
+<body onload="init()">
+
+	<h1>Call Company Service</h1>
+	 <table>
+	 	<tr>
+	 		<td>Enter CouponId</td>
+	 		<td><input type="text" id="couponId" size="10" /></td>
+	 	</tr>	
+	 	
+	 	<tr>
+	 		<td>Enter Coupon Title</td>
+	 		<td><input type="text" id="coupontitle" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Coupon start date</td>
+	 		<td><input type="text" id="startdate" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Enter Coupon end date</td>
+	 		<td><input type="password" id="enddate" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Enter Coupon amount</td>
+	 		<td><input type="password" id="amount" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Enter message</td>
+	 		<td><input type="password" id="message" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Enter Coupon price</td>
+	 		<td><input type="password" id="price" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Enter image</td>
+	 		<td><input type="password" id="image" size="30"/><input type="button" value="Update Coupon Info" onClick="updateDetails()"/>
+	 	</tr>
+	 </table>
+
+</body>
+</html>

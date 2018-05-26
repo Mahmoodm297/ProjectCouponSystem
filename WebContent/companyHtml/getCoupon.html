@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Get Coupon</title>
+<script> 
+
+	var xmlhttp;
+	function init (){
+		
+		xmlhttp=new XMLHttpRequest ();
+	}
+function getDetails (){
+		var coupon=document.getElementById("coouponId");
+		var url = "http://localhost:8080/Coupons/rest/companyService/getCoupon?coouponId="+coupon.value;
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send(null);
+		xmlhttp.onreadystatechange=function(){
+			
+			var coupontitle=document.getElementById("coupontitle");
+			var startdate=document.getElementById("startdate");
+			var enddate=document.getElementById("enddate");
+			var amount=document.getElementById("amount");
+			var type=document.getElementById("type");
+			var message=document.getElementById("message");
+			var price=document.getElementById("price");
+			var image=document.getElementById("image");
+
+			if(xmlhttp.readyState == 4){
+				if(xmlhttp.status == 200){
+					
+					var det= eval("(" + xmlhttp.responseText+")");	
+					if(comp.value > 0){
+			
+						coupontitle.value=det.title;
+						startdate.value=det.startdate;
+						enddate.value=det.enddate;
+						amount.value=det.amount;
+						type.value=det.type;
+						message.value=det.message;
+						price.value=det.price;
+						image.value=det.image;
+					}
+					else{
+						compname.value="";
+						startdate.value="";
+						enddate.value="";
+						amount.value=det;
+						type.value=det.""";
+						message.value=det."";
+						price.value=det.""";
+						image.value=det."";
+						aler(" Invalid Coupon Id ");
+					}
+				}
+				else { 
+					
+					alert("Error -->" +xmlhttp.responseText);
+				}
+			}
+			
+			
+		}
+}
+</script>
+</head>
+
+<body onload="init()">
+
+	<h1>Call Company Service</h1>
+	 <table>
+	 	<tr>
+	 		<td>Enter CouponId</td>
+	 		<td><input type="text" id="couponId" size="10" /> <input type="button" value="Get Info" onClick="getDetails()"/>
+	 	</tr>	
+	 	
+	 	<tr>
+	 		<td>Coupon Title</td>
+	 		<td><input type="text" readonly="true"  id="coupontitle" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Coupon start date</td>
+	 		<td><input type="text" readonly="true"  id="startdate" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Coupon end date</td>
+	 		<td><input type="text" readonly="true"  id="enddate" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Coupon amount</td>
+	 		<td><input type="text" readonly="true"  id="amount" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Coupon type</td>
+	 		<td><input type="text" readonly="true"  id="type" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Coupon message</td>
+	 		<td><input type="text" readonly="true"  id="message" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Coupon price</td>
+	 		<td><input type="text" readonly="true"  id="price" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Coupon image</td>
+	 		<td><input type="text" readonly="true"  id="coupontitle" size="30"/></td>
+	 	</tr>
+	 	
+	 </table>
+
+</body>
+</html>

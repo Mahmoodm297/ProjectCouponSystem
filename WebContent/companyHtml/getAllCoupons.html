@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Get All Coupons</title>
+<script> 
+
+	var xmlhttp;
+	function init (){
+		
+		xmlhttp=new XMLHttpRequest ();
+	}
+function getAllCoupons (){
+		var url = "http://localhost:8080/Coupons/rest/companyService/getallcoupons";
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send(null);
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState == 4){
+				if(xmlhttp.status == 200){
+					
+					var det= eval("(" + xmlhttp.responseText+")");	
+				}
+				else { 
+					
+					alert("Error -->" +xmlhttp.responseText);
+				}
+			}
+			
+			
+		}
+}
+
+function getCouponByType(){
+	var url = "http://localhost:8080/Coupons/rest/companyService/getcouponbytype";
+	xmlhttp.open('GET', url, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200){
+				
+				var det= eval("(" + xmlhttp.responseText+")");	
+			}
+			else { 
+				
+				alert("Error -->" +xmlhttp.responseText);
+			}
+		}
+		
+		
+	}
+}
+
+function getCouponByPrice(){
+	var url = "http://localhost:8080/Coupons/rest/companyService/getcouponbyprice";
+	xmlhttp.open('GET', url, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200){
+				
+				var det= eval("(" + xmlhttp.responseText+")");	
+			}
+			else { 
+				
+				alert("Error -->" +xmlhttp.responseText);
+			}
+		}
+		
+		
+	}
+}
+
+function getCouponByEndDate(){
+	var url = "http://localhost:8080/Coupons/rest/companyService/getcouponbyenddate";
+	xmlhttp.open('GET', url, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200){
+				
+				var det= eval("(" + xmlhttp.responseText+")");	
+			}
+			else { 
+				
+				alert("Error -->" +xmlhttp.responseText);
+			}
+		}
+		
+		
+	}
+}
+</script>
+</head>
+
+<body onload="init()">
+
+	<h1>Call Company Service</h1>
+	 <table>
+	 	<tr>
+	 		<td><input type="button" value="Get All Coupons" onClick="getAllCoupons()"/>
+	 	</tr>	
+	 	
+	 	<tr>
+	 		<td><input type="button" value="Get All Coupons By Type" onClick="getCouponByType()"/>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td><input type="button" value="Get All Coupons By Price" onClick="getCouponByPrice()"/>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td><input type="button" value="Get All Coupons By End Date" onClick="getCouponByEndDate()"/>
+	 	</tr>
+	 	
+	 </table>
+
+</body>
+</html>

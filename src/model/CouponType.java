@@ -1,0 +1,6 @@
+package model;
+
+public enum CouponType {
+	RESTURANTS, ELECTRICITY, FOOD, HEALTH, SPORTS, CAMPING, TRAVELLING, HOTELS, CLOTHING
+
+}

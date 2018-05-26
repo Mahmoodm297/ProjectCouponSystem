@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Get All Companies</title>
+<script> 
+
+	var xmlhttp;
+	function init (){
+		
+		xmlhttp=new XMLHttpRequest ();
+	}
+function getAllComp(){
+		var url = "http://localhost:8080/Coupons/rest/companyService/getAllCompanies";
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send(null);
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState == 4){
+				if(xmlhttp.status == 200){
+					
+					var det= eval("(" + xmlhttp.responseText+")");	
+				}
+				else { 
+					
+					alert("Error -->" +xmlhttp.responseText);
+				}
+			}			
+		}
+}
+</script>
+</head>
+
+<body onload="init()">
+
+	<h1>Call Company Service</h1>
+	 <table>
+	 	<tr>
+	 		<td><input type="button" value="Get All Companies" onClick="getAllComp()"/>
+	 	</tr>	
+	 	
+	 </table>
+
+</body>
+</html>

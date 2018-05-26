@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Update Company</title>
+<script>
+
+	var xmlhttp;
+	function init() {
+		
+		xmlhttp=new XMLHttpRequest ();
+		alert("xml");
+	}
+	
+	function updateDetails(){
+		alert("update");
+		var customerid=document.getElementById("customerid");
+		alert(customerid);
+		var customername=document.getElementById("customername");
+		var customerpass=document.getElementById("customerpass");
+		var url = "http://localhost:8080/Coupons/rest/adminServices/updatecustomer?id="+customerid.value
+				+"&name="+customername.value+"&pass="+customerpass.value;
+		alert(url);
+		xmlhttp.open('PUT', url, true);
+		xmlhttp.send(null);
+}	
+</script>
+</head>
+<body onload="init()">
+
+	<h1>Call Admin Service</h1>
+	 <table>
+	 	<tr>
+	 		<td>Enter CustomerId</td>
+	 		<td><input type="text" id="customerid" size="10" /></td>
+	 	</tr>	
+	 	
+	 	<tr>
+	 		<td>Customer Name</td>
+	 		<td><input type="text"id="customername" size="30"/></td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td>Customer Password</td>
+	 		<td><input type="text"id="customerpass" size="30"/><input type="button" value="Update Customer Info" onClick="updateDetails()"/>
+	 	</tr>
+	 </table>
+
+</body>
+</html>
