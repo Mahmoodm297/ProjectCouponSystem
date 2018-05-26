@@ -20,6 +20,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Coupon System WEB Services</servlet-name>
-    <url-pattern>/Coupon/*</url-pattern>
+    <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -12,7 +12,8 @@
 	}
 function getDetails (){
 		var comp=document.getElementById("compId");
-		var url = "http://localhost:8080/Coupons/rest/adminServices/getcompany?compId="+comp.value;
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/getcompany?compId="+comp.value;
+		//alert(url);
 		xmlhttp.open('GET', url, true);
 		xmlhttp.send(null);
 		xmlhttp.onreadystatechange=function(){

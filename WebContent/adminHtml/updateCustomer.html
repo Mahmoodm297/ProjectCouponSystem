@@ -18,7 +18,7 @@
 		alert(customerid);
 		var customername=document.getElementById("customername");
 		var customerpass=document.getElementById("customerpass");
-		var url = "http://localhost:8080/Coupons/rest/adminServices/updatecustomer?id="+customerid.value
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecustomer?id="+customerid.value
 				+"&name="+customername.value+"&pass="+customerpass.value;
 		alert(url);
 		xmlhttp.open('PUT', url, true);

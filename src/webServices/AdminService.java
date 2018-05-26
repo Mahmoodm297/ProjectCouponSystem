@@ -35,7 +35,6 @@ public class AdminService {
 	public String getComp(@QueryParam("compId")int id)
 	{
 		Company comp = new Company();
-		//AdminFacade admin= new AdminFacade();
 		comp=admin.getCompany(id);
 		return ("{'name':'"+comp.getCompanyName()+"','compemail':'"+comp.getEmail()+"'}");
 	}
