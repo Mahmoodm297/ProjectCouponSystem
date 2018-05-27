@@ -17,7 +17,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.json.JSONObject;
+//import org.json.JSONException;
+import org.json.simple.JSONObject;
+//import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import facade.AdminFacade;
 import facade.ClientType;
@@ -68,15 +72,19 @@ public class AdminService {
 	@PUT
 	@Path("/updatecompany")
 	@Consumes(MediaType.TEXT_PLAIN)
-	public void updateCompanyById(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("email")String email,@QueryParam("pass")String password){
-		
+	//@Consumes(MediaType.APPLICATION_JSON)
+	//public void updateCompanyById(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("email")String email,@QueryParam("pass")String password){
+	public void 	updateCompanyById ( String requestr) throws ParseException {
 		Company comp = new Company();
-		//adminFacade admin= new adminFacade();
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObj = (JSONObject) parser.parse(requestr);
+		int id =   Integer.parseInt((String) jsonObj.get("id"));
 		comp=admin.getCompany(id);
-		comp.setCompanyName (name);
-		comp.setEmail(email);
-		comp.setPassword(password);
+		comp.setCompanyName (jsonObj.get("name").toString());
+		comp.setEmail(jsonObj.get("email").toString());
+		comp.setPassword(jsonObj.get("pass").toString());
 		admin.updateCompany(comp);
+		
 	}
 	
 	@GET 

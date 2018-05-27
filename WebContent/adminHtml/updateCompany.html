@@ -9,20 +9,31 @@
 	function init() {
 		
 		xmlhttp=new XMLHttpRequest ();
+		xmlhttp.setRquestHeader('Content-Type','application/json');
 		alert("xml");
 	}
 	
 	function updateDetails(){
-		alert("update");
+		//alert("update");
 		var compid=document.getElementById("compid");
-		alert(compid);
+		//alert(compid);
 		var compname=document.getElementById("compname");
 		var compemail=document.getElementById("compemail");
 		var comppass=document.getElementById("comppass");
+		//var requestBoday = "{'id':'"++"', 'name': '"+compname.value+"','email':'"+compemail.value+"','pass':'"+comppass.value+"'}"
+		var requestBoday = {
+				id : compid.value,
+				name : compname.value ,
+				email : compemail.value,
+				pass : comppass.value
+		};
+		var json = JSON.stringify(requestBoday)
+		alert("test")
 		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecompany?id="+compid.value+"&name="+compname.value+"&email="+compemail.value+"&pass="+comppass.value;
-		alert(url);
+		alert(json);
 		xmlhttp.open('PUT', url, true);
-		xmlhttp.send(null);
+		//xmlhttp.send(null);
+		xmlhttp.send(json);
 }	
 </script>
 </head>
