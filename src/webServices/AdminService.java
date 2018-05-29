@@ -23,6 +23,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import facade.AdminFacade;
 import facade.ClientType;
 import model.Company;
@@ -76,6 +80,16 @@ public class AdminService {
 	//public void updateCompanyById(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("email")String email,@QueryParam("pass")String password){
 	public void 	updateCompanyById ( String requestr) throws ParseException {
 		Company comp = new Company();
+		Gson gson = new Gson();
+		JsonElement element = gson.fromJson(requestr, JsonElement.class);
+		JsonObject jsonObject = element.getAsJsonObject();
+		int id=jsonObject.get("id").getAsInt();
+		comp=admin.getCompany(id);
+		comp.setCompanyName (jsonObject.get("name").getAsString());
+		comp.setEmail(jsonObject.get("email").getAsString());
+		//System.out.println("test"+jsonObject.get("email").getAsString());
+		comp.setPassword(jsonObject.get("pass").getAsString());
+		/*
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj = (JSONObject) parser.parse(requestr);
 		int id =   Integer.parseInt((String) jsonObj.get("id"));
@@ -83,22 +97,30 @@ public class AdminService {
 		comp.setCompanyName (jsonObj.get("name").toString());
 		comp.setEmail(jsonObj.get("email").toString());
 		comp.setPassword(jsonObj.get("pass").toString());
+		*/
 		admin.updateCompany(comp);
 		
 	}
 	
 	@GET 
 	@Path("/getAllCompanies")
-	@Produces("application/json")
-	public JSONObject getAllComp()
+	//@Produces("application/json")
+	@Produces(MediaType.TEXT_PLAIN)
+	
+	public String getAllComp()
 	{
 		System.out.println("server side");
-		JSONObject obj=new JSONObject();
+		Gson gson = new Gson();
+		String retString = null;
+		
+		//JSONObject obj=new JSONObject();
 		List<Company> companyList= new ArrayList<Company>();
 		//adminFacade admin= new adminFacade();
 		companyList=(List<Company>) admin.getAllCompanies();
-		obj=(JSONObject) companyList;
-		return obj;
+		//obj=(JSONObject) companyList;
+		retString = gson.toJson(companyList);
+		System.out.println(retString);
+		return retString;
 	}
 	
 

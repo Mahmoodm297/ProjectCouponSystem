@@ -29,7 +29,9 @@
 		};
 		var json = JSON.stringify(requestBoday)
 		alert("test")
-		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecompany?id="+compid.value+"&name="+compname.value+"&email="+compemail.value+"&pass="+comppass.value;
+		//var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecompany?id="+compid.value+"&name="+compname.value+"&email="+compemail.value+"&pass="+comppass.value;
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecompany"
+
 		alert(json);
 		xmlhttp.open('PUT', url, true);
 		//xmlhttp.send(null);
