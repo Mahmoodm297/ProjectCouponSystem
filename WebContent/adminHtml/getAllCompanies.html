@@ -3,8 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Get All Companies</title>
-<script> 
-
+<!--  <link href="../dist/css/tabulator.css" rel="stylesheet">-->
+<!--  <script type="text/javascript" src="../dist/js/tabulator.js">  -->
+<script>
 	var xmlhttp;
 	function init (){
 		
@@ -18,7 +19,53 @@ function getAllComp(){
 			if(xmlhttp.readyState == 4){
 				if(xmlhttp.status == 200){
 					
-					var det= eval("(" + xmlhttp.responseText+")");	
+					var det= eval("(" + xmlhttp.responseText+")");
+					var companies=document.getElementsByTagName('div')[0];//document.getElementById("companies");
+					var tbl     = document.createElement("table");
+			        var tblBody = document.createElement("tbody");
+			        //Header Table
+			        var row = document.createElement("tr");
+			        var headers=["ID","Name","Email","Password"];
+			        
+			        for (i = 0; i < headers.length; i++) {
+				        var cell = document.createElement("th");    
+		                var cellText = document.createTextNode(headers[i]);
+		                cell.appendChild(cellText);
+		                row.appendChild(cell);
+			        }
+			        //Add line to table Boday
+			        tblBody.appendChild(row);
+			        //FINISH TABLE HEADER
+			        //START TABLE BODY
+			        var obj = JSON.parse(xmlhttp.responseText);
+			        var headers=["id","companyName","email","password"];
+			        for (i=0;i < obj.length;i++){
+			        	//alert (obj[i].id )
+			        	var row = document.createElement("tr");
+			        	for (j=0;j < headers.length;j++){
+					        var cell = document.createElement("td"); 
+					        
+					        //alert (obj[i].companyName );
+					        //alert (headers[j]);
+					        var temp=obj[i][headers[j]];
+			                var cellText = document.createTextNode(temp);
+			                //alert(temp);
+			    
+			                cell.appendChild(cellText);
+			                row.appendChild(cell);
+			        	}
+			        	tblBody.appendChild(row);
+			        	//alert(id);
+			        }
+			        
+			        //END TABLE BODY
+			     	// append the <tbody> inside the <table>
+			        tbl.appendChild(tblBody);
+			        // put <table> in the <body>
+			        //alert(xmlhttp.responseText);
+			        companies.appendChild(tbl);
+			        // tbl border attribute to 
+			        tbl.setAttribute("border", "2");
 				}
 				else { 
 					
@@ -33,12 +80,13 @@ function getAllComp(){
 <body onload="init()">
 
 	<h1>Call Company Service</h1>
-	 <table>
-	 	<tr>
-	 		<td><input type="button" value="Get All Companies" onClick="getAllComp()"/>
-	 	</tr>	
-	 	
-	 </table>
+	<BR/>
+	<BR/>
+	<input type="button" value="Get All Companies" onClick="getAllComp()"/>
+	<div id="compnies">
+	
+	</div>
+
 
 </body>
 </html>
