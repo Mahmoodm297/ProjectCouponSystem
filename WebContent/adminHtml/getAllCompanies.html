@@ -19,8 +19,8 @@ function getAllComp(){
 			if(xmlhttp.readyState == 4){
 				if(xmlhttp.status == 200){
 					
-					var det= eval("(" + xmlhttp.responseText+")");
-					var companies=document.getElementsByTagName('div')[0];//document.getElementById("companies");
+					//var det= eval("(" + xmlhttp.responseText+")");
+					var companies=document.getElementsByTagName('div')[0];
 					var tbl     = document.createElement("table");
 			        var tblBody = document.createElement("tbody");
 			        //Header Table
@@ -44,9 +44,6 @@ function getAllComp(){
 			        	var row = document.createElement("tr");
 			        	for (j=0;j < headers.length;j++){
 					        var cell = document.createElement("td"); 
-					        
-					        //alert (obj[i].companyName );
-					        //alert (headers[j]);
 					        var temp=obj[i][headers[j]];
 			                var cellText = document.createTextNode(temp);
 			                //alert(temp);
