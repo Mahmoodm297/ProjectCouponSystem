@@ -58,26 +58,29 @@ public class AdminService {
 		admin.removeCompany(comp);
 	}
 	
-	 @POST
+	//public void createCompany(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("email")String email,@QueryParam("pass")String password) {
+	 @PUT
 	 @Path("/createcompany")	
 	 @Consumes(MediaType.TEXT_PLAIN)
-	 public void createCompany(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("email")String email,@QueryParam("pass")String password) {
-		 System.out.println(id);
-		 System.out.println("server side");
-		 Company comp = new Company();
-		 //adminFacade admin= new adminFacade();
-		 comp.setCompanyName(name);
-		 comp.setId(id);
-		 comp.setEmail(email);
-		 comp.setPassword(password);
-		 admin.createCompany(comp);		 
+	 public void createCompany(String requestr) {
+		 	System.out.println("server side");
+			Company comp = new Company();
+			Gson gson = new Gson();
+			JsonElement element = gson.fromJson(requestr, JsonElement.class);
+			JsonObject jsonObject = element.getAsJsonObject();
+			comp.setCompanyName (jsonObject.get("name").getAsString());
+			comp.setEmail(jsonObject.get("email").getAsString());
+			comp.setPassword(jsonObject.get("pass").getAsString());
+			admin.createCompany(comp);
+			System.out.println("Company was created");
+			//System.out.println(id);
+		 
+			 		 
 	    }
 	
 	@PUT
 	@Path("/updatecompany")
 	@Consumes(MediaType.TEXT_PLAIN)
-	//@Consumes(MediaType.APPLICATION_JSON)
-	//public void updateCompanyById(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("email")String email,@QueryParam("pass")String password){
 	public void 	updateCompanyById ( String requestr) throws ParseException {
 		Company comp = new Company();
 		Gson gson = new Gson();
@@ -136,10 +139,10 @@ public class AdminService {
 //	}
 	
 
-/*
+
 	@DELETE
 	@Path("/{customerid}")
-	public void deleteCompanyById(@PathParam("customerid")int id){
+	public void deleteCCustomerById(@PathParam("customerid")int id){
 		
 		Customer customer = new Customer();
 		//adminFacade admin= new adminFacade();
@@ -147,31 +150,44 @@ public class AdminService {
 		admin.removeCustomer(customer);
 	}
 	
-	 @POST
-	 @Path("/createcustomer")	
-	 @Consumes(MediaType.TEXT_PLAIN)
-	 public void createCompany(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("email")String email,@QueryParam("pass")String password) {
-		 System.out.println(id);
-		 System.out.println("server side");
-		 Customer customer = new Customer();
-		 adminFacade admin= new adminFacade();
-		 customer.setCompName(name);
-		 customer.setId(id);
-		 customer.setEmail(email);
-		 customer.setPassword(password);
-		 admin.createCustomer(customer);;		 
-	    }
-*/	
+
+	@PUT
+	@Path("/createcustomer")
+	@Consumes(MediaType.TEXT_PLAIN)
+	// public void createCustomer(@QueryParam("id")int id,@QueryParam("name")String
+	// name,@QueryParam("email")String email,@QueryParam("pass")String password) {
+	public void createCustomer(String requestr) {
+		Gson gson = new Gson();
+		JsonElement element = gson.fromJson(requestr, JsonElement.class);
+		JsonObject jsonObject = element.getAsJsonObject();
+		String name = jsonObject.get("name").getAsString();
+		String pass = jsonObject.get("pass").getAsString();
+
+		System.out.println("server side");
+		Customer customer = new Customer();
+		// adminFacade admin= new adminFacade();
+		customer.setName(name);
+		customer.setPassword(pass);
+		admin.createCustomer(customer);
+	}
+
 	@PUT
 	@Path("/updatecustomer")
 	@Consumes(MediaType.TEXT_PLAIN)
-	public void updateCompanyById(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("pass")String password){
+	//public void updateCustomer(@QueryParam("id")int id,@QueryParam("name")String name,@QueryParam("pass")String password){
 		
+	public void updateCustomer(String requestr) {
 		Customer customer = new Customer();
+		Gson gson = new Gson();
+		JsonElement element = gson.fromJson(requestr, JsonElement.class);
+		JsonObject jsonObject = element.getAsJsonObject();
+		int id = jsonObject.get("id").getAsInt();
+		String name = jsonObject.get("name").getAsString();
+		String pass = jsonObject.get("pass").getAsString();
 		//adminFacade admin= new adminFacade();
 		customer=admin.getCustomer(id);
 		customer.setName(name);
-		customer.setPassword(password);
+		customer.setPassword(pass);
 		admin.updateCustomer(customer);
 	}
 /*	

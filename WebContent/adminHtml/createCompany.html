@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -9,47 +9,64 @@
 	function init() {
 		
 		xmlhttp=new XMLHttpRequest ();
+		xmlhttp.setRquestHeader('Content-Type','application/json');
+		//alert("xml");
 	}
 	
-	function setDetails() {
-		alert("set details");
-		var compid=document.getElementById("compid");
-		var compname=document.getElementById("compname"); 
-		var compemail=document.getElementById("compemail");
-		var comppass=document.getElementById("comppass");
-		var url = "http://localhost:8080/Coupons/rest/adminServices/createcompany?id="+compid.value+"&name="+compname.value+"&email="+compemail.value+"&pass="+comppass.value;
-		xmlhttp.open('POST',url, true);
-		xmlhttp.send(null);
-		alert("SENT");
-	}
+	function createComp(){
+		//alert("update");
+		//var compid=document.getElementById("compid");
+		//alert(compid);
+		var compname=document.getElementById("compname");
+		var compemail=document.getElementById("email");
+		var comppass=document.getElementById("password");
+		//alert("test");
+		//var requestBoday = "{'id':'"++"', 'name': '"+compname.value+"','email':'"+compemail.value+"','pass':'"+comppass.value+"'}"
+		var requestBoday = {
+				name : compname.value ,
+				email : compemail.value,
+				pass : comppass.value
+		};
+		var json = JSON.stringify(requestBoday);
+		//alert("test");
+		//var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecompany?id="+compid.value+"&name="+compname.value+"&email="+compemail.value+"&pass="+comppass.value;
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/createcompany";
+
+		//alert(json);
+		xmlhttp.open('PUT', url, true);
+		//xmlhttp.send(null);
+		xmlhttp.send(json);
+	}	
 </script>
 </head>
-
-<body onload="init()">
-
-	<h1>Call Admin Service</h1>
-	 <table>
-	 	<tr>
-	 		<td>Enter CompanyId</td>
-	 		<td><input type="text" id="compid" size="10" /></td>
-	 	</tr>	
-	 	
-	 	<tr>
-	 		<td>Enter Company Name</td>
-	 		<td><input type="text" id="compname" size="30"/></td>
-	 	</tr>
-	 	
-	 	<tr>
-	 		<td>Enter Company Email</td>
-	 		<td><input type="text" id="compemail" size="30"/></td>
-	 	</tr>
-	 	
-	 	<tr>
-	 		<td>Enter Company Password</td>
-	 		<td><input type="password" id="comppass" size="30"/><input type="button" value="Add Company" onClick="setDetails()"/></td>
-	 	</tr>
-	 	
-	 </table>
-
-</body>
+  
+ <body  onload="init()">
+   <h1>Welcome Admin</h1>
+   <h2>Enter the following credentials :</h2>
+   <table>
+	   <tr>
+	       <td>Enter Company Name :  </td>
+	       <td><input type="text" id="compname" name="compname" size="30"/> </td>
+	   </tr>
+	   <tr>
+	      <td>Enter Company Email : </td>
+	       <td><input type="text" id="email"  name="email" size="30"/> </td>
+	   </tr>
+	
+	   <tr>
+	       <td>Enter Company password : </td>
+	       <td><input type="text" id="password" name="password" size="30"/> </td>
+	   </tr>
+	   
+	   <tr>
+	       <td><input type="button" value="Create Company" onclick="createComp()"/> </td>
+	   </tr>
+	   
+	   <tr>
+	       <td>Your Company's ID is : </td>
+	       <td><input type="text" readonly="true" id="compno" name="compno" size="10"/> </td>
+	   </tr>
+   </table>
+  </body>
 </html>
+  

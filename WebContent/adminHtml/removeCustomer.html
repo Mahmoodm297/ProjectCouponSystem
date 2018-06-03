@@ -13,7 +13,7 @@
 	function removeDetails (){
 		
 		var customer=document.getElementById("customerid");
-		var url = "http://localhost:8080/Coupons/rest/adminServices/"+customer.value;
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/"+customer.value;
 		xmlhttp.open('DELETE', url, true);
 		xmlhttp.send(null);	
 }

@@ -10,7 +10,7 @@
 		
 		xmlhttp=new XMLHttpRequest ();
 		xmlhttp.setRquestHeader('Content-Type','application/json');
-		alert("xml");
+		//alert("xml");
 	}
 	
 	function updateDetails(){
@@ -28,11 +28,11 @@
 				pass : comppass.value
 		};
 		var json = JSON.stringify(requestBoday)
-		alert("test")
+		//alert("test");
 		//var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecompany?id="+compid.value+"&name="+compname.value+"&email="+compemail.value+"&pass="+comppass.value;
 		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecompany"
 
-		alert(json);
+		//alert(json);
 		xmlhttp.open('PUT', url, true);
 		//xmlhttp.send(null);
 		xmlhttp.send(json);

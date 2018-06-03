@@ -2,13 +2,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-<title>Update Company</title>
+<title>Update Customer Details</title>
 <script>
 
 	var xmlhttp;
 	function init() {
 		
 		xmlhttp=new XMLHttpRequest ();
+		xmlhttp.setRquestHeader('Content-Type','application/json');
 		alert("xml");
 	}
 	
@@ -18,11 +19,16 @@
 		alert(customerid);
 		var customername=document.getElementById("customername");
 		var customerpass=document.getElementById("customerpass");
-		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecustomer?id="+customerid.value
-				+"&name="+customername.value+"&pass="+customerpass.value;
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/updatecustomer";
 		alert(url);
+		var requestBoday = {
+				id : customerid.value,
+				name : customername.value ,
+				pass : customerpass.value
+		};
+		var json = JSON.stringify(requestBoday)
 		xmlhttp.open('PUT', url, true);
-		xmlhttp.send(null);
+		xmlhttp.send(json);
 }	
 </script>
 </head>

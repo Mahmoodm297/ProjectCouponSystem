@@ -9,18 +9,25 @@
 	function init() {
 		
 		xmlhttp=new XMLHttpRequest ();
+		xmlhttp.setRquestHeader('Content-Type','application/json');
 	}
 	
 	function setDetails() {
 		alert("set details");
-		var customerid=document.getElementById("customerid");
+		//var customerid=document.getElementById("customerid");
 		var customername=document.getElementById("customername"); 
 		var customerpass=document.getElementById("customerpass");
-		var url = "http://localhost:8080/Coupons/rest/adminServices/createcustomer?id="+customerid.value
-				+"&name="+customername.value+"&pass="+customerpass.value;
-		xmlhttp.open('POST',url, true);
-		xmlhttp.send(null);
-		alert("SENT");
+		var requestBoday = {
+				//id : compid.value,
+				name : customername.value ,
+				pass : customerpass.value,
+		};
+		var json = JSON.stringify(requestBoday)
+		alert(json);
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/createcustomer";
+		xmlhttp.open('PUT',url, true);
+		xmlhttp.send(json);
+		
 	}
 </script>
 </head>
@@ -41,7 +48,7 @@
 	
 	 	<tr>
 	 		<td>Enter Customer Password</td>
-	 		<td><input type="password" id="customerpass" size="30"/><input type="button" value="Add Company" onClick="setDetails()"/></td>
+	 		<td><input type="password" id="customerpass" size="30"/><input type="button" value="Create Customer" onClick="setDetails()"/></td>
 	 	</tr>
 	 	
 	 </table>
