@@ -30,7 +30,7 @@ public class AdminFacade implements CouponClientFacade{
 	public CouponClientFacade login(String name, String password, ClientType clientType) {
 		
 		//instance = null;
-		if(name.equals("admin") && password.equals("1234") && clientType == ClientType.ADMIN) {
+		if(name.equals("admin") && password.equals("1234") && clientType == ClientType.ADMIN && this.login == false) {
 			this.companyDao = new CompanyDaoImpl();
 			this.customerDao = new CustomerDaoImpl();
 			this.login = true;

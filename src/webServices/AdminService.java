@@ -92,15 +92,6 @@ public class AdminService {
 		comp.setEmail(jsonObject.get("email").getAsString());
 		//System.out.println("test"+jsonObject.get("email").getAsString());
 		comp.setPassword(jsonObject.get("pass").getAsString());
-		/*
-		JSONParser parser = new JSONParser();
-		JSONObject jsonObj = (JSONObject) parser.parse(requestr);
-		int id =   Integer.parseInt((String) jsonObj.get("id"));
-		comp=admin.getCompany(id);
-		comp.setCompanyName (jsonObj.get("name").toString());
-		comp.setEmail(jsonObj.get("email").toString());
-		comp.setPassword(jsonObj.get("pass").toString());
-		*/
 		admin.updateCompany(comp);
 		
 	}
@@ -126,19 +117,6 @@ public class AdminService {
 		return retString;
 	}
 	
-
-//	@GET 
-//	@Path("/getcustomer")
-//	@Produces("application/json")
-//	public String getCustomer(@QueryParam("customerId")int id)
-//	{
-//		Customer customer = new Customer();
-//		adminFacade admin= new adminFacade();
-//		customer=admin.getCustomer(id);
-//		return ("{'name':'"+customer.getCompName()+"','password':'"+customer.getPassword()+"'}");
-//	}
-	
-
 
 	@DELETE
 	@Path("/{customerid}")
@@ -209,5 +187,26 @@ public class AdminService {
 		System.out.println(retString);
 		return retString;
 	}
+	
+	 @GET
+	 @Path("/LoginAdmin")	
+	 @Consumes(MediaType.TEXT_PLAIN)
+	 //@Produces(MediaType.TEXT_PLAIN)
+	 public void AdminLogin(String requestr) {
+		 	System.out.println("server side Login");
+			Gson gson = new Gson();
+			JsonElement element = gson.fromJson(requestr, JsonElement.class);
+			JsonObject jsonObject = element.getAsJsonObject();
+			String user = jsonObject.get("name").getAsString();
+			String pass = jsonObject.get("password").getAsString();
+			//String type = jsonObject.get("type").getAsString();
+			//admin = (AdminFacade) AdminFacade.getInstance().login(user, pass, ClientType.ADMIN);
+		
+			//System.out.println("Company was created");
+			//System.out.println(id);
+		 
+			 		 
+	    }
 
 }
+
