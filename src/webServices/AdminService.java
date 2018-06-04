@@ -190,19 +190,24 @@ public class AdminService {
 		customer.setPassword(pass);
 		admin.updateCustomer(customer);
 	}
-/*	
+	
+
 	@GET 
 	@Path("/getAllCustomers")
-	@Produces("application/json")
-	public JSONObject getAllComp()
+	@Produces(MediaType.TEXT_PLAIN)
+	
+	public String getAllCustomers()
 	{
 		System.out.println("server side");
-		JSONObject obj=new JSONObject();
-		List<Customer> customerList= new ArrayList<Customer>();
+		Gson gson = new Gson();
+		String retString = null;
+		List<Customer> customerlist= new ArrayList<Customer>();
 		//adminFacade admin= new adminFacade();
-		customerList=(List<Customer>)admin.getAllCustomer();
-		obj=(JSONObject) customerList;
-		return obj;
+		customerlist=(List<Customer>) admin.getAllCustomers();
+		//obj=(JSONObject) companyList;
+		retString = gson.toJson(customerlist);
+		System.out.println(retString);
+		return retString;
 	}
-*/	
+
 }
