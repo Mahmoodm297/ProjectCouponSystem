@@ -188,25 +188,45 @@ public class AdminService {
 		return retString;
 	}
 	
+	
+	@PUT
+	@Path("/LoginAdmin")
+	@Consumes(MediaType.TEXT_PLAIN)
+	public void adminLogin(String requestr) {
+		System.out.println("Admin Login !!Test");
+		Gson gson = new Gson();
+		JsonElement element = gson.fromJson(requestr, JsonElement.class);
+		JsonObject jsonObject = element.getAsJsonObject();
+		//int id = jsonObject.get("id").getAsInt();
+		String user = jsonObject.get("user").getAsString();
+		String pass = jsonObject.get("pass").getAsString();
+		String type = jsonObject.get("type").getAsString();
+		//adminFacade admin= new adminFacade();
+		System.out.println("User "+user+" Pass "+pass+" Type "+type);
+		//admin.updateCustomer(customer);
+		AdminFacade temp = (AdminFacade) AdminFacade.getInstance().login(user, pass, ClientType.ADMIN);
+		if ( temp != null)
+			System.out.println("User is Loged in");
+		else
+			System.out.println("User is login failed ");
+	}
+	
+	/*
 	 @GET
 	 @Path("/LoginAdmin")	
 	 @Consumes(MediaType.TEXT_PLAIN)
 	 //@Produces(MediaType.TEXT_PLAIN)
 	 public void AdminLogin(String requestr) {
-		 	System.out.println("server side Login");
-			Gson gson = new Gson();
+		 	System.out.println("server side Login"+requestr   +"test");
+		 	Gson gson = new Gson();
 			JsonElement element = gson.fromJson(requestr, JsonElement.class);
 			JsonObject jsonObject = element.getAsJsonObject();
-			String user = jsonObject.get("name").getAsString();
-			String pass = jsonObject.get("password").getAsString();
-			//String type = jsonObject.get("type").getAsString();
-			//admin = (AdminFacade) AdminFacade.getInstance().login(user, pass, ClientType.ADMIN);
-		
-			//System.out.println("Company was created");
-			//System.out.println(id);
-		 
-			 		 
+			String name = jsonObject.get("name").getAsString();
+			String pass = jsonObject.get("pass").getAsString();
+			System.out.println("User "+name+" Password "+pass);
 	    }
-
+	*/
 }
+
+
 
