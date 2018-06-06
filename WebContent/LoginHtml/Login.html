@@ -1,75 +1,84 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script language="javascript">
-		var xmlhttp
-		function init() {
-			xmlhttp = new XMLHttpRequest();
-			xmlhttp.setRquestHeader('Content-Type','application/json');
-		}
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Login to Coupon System</title>
+<script>
+
+	var xmlhttp;
+	function init() {
 		
-		function getComp() {
-            var name =  document.getElementById("user");
-            var type =  document.getElementById("type");
-            var password =  document.getElementById("password");
-            var url = null;
-            switch (type.value) {
-            case "ADMIN":
-                alert("Admin");
-            	url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/LoginAdmin";
-            	break;
-            case "COMPANY":
-            	url = "http://localhost:8080/ProjectCouponSystem/Coupon/adminMain/getComp/LOGIN" ;
-            	break;
-            case "CUSTOMER":
-            	url = "http://localhost:8080/ProjectCouponSystem/Coupon/adminMain/getComp/LOGIN";
-            	break;
-                
-            }
-            
-			alert (url);
-    		var requestBoday = {
-    				name : name.value ,
-    				password : password.value,
-    				type : type.value
-    		};
-    		
-    		var json = JSON.stringify(requestBoday);
+		xmlhttp=new XMLHttpRequest ();
+		xmlhttp.setRquestHeader('Content-Type','application/json');
+		//alert("xml");
+	}
+	
+	function Login(){
+		//alert("update");
+		//var compid=document.getElementById("compid");
+		//alert(compid);
+		var user = document.getElementById("user");
+		var pass = document.getElementById("pass");
+		var type = document.getElementById("type");
+		//alert("test");
+		//var requestBoday = "{'id':'"++"', 'name': '"+compname.value+"','email':'"+compemail.value+"','pass':'"+comppass.value+"'}"
+		var requestBoday = {
+				user : user.value ,
+				pass : pass.value,
+				type : type.value
+		};
+		var json = JSON.stringify(requestBoday);
+		alert(json);
+		var url = null;
+		switch (requestBoday['type']) {
+		case 'ADMIN':
+			url = "http://localhost:8080/ProjectCouponSystem/rest/adminServices/LoginAdmin";
+			break;
+		case 'USER' :
+			url="http://localhost:8080/ProjectCouponSystem/rest";
+			break;
+		case 'COMPANY' :
+			url="http://localhost:8080/ProjectCouponSystem/rest";
+			break;
 			
-			alert ("Before");
-	        xmlhttp.open('GET',url,true);
-	        xmlhttp.send(json);
-	        alert(json);
-   
+		default:
+			break;
 		}
-	</script>
-  </head>
+		alert(url);
+		xmlhttp.open('PUT', url, true);
+		xmlhttp.send(json);
+	}	
+</script>
+</head>
   
  <body  onload="init()">
-   <h1>Welcome Admin</h1>
+   <h1>Welcome to Coupon System</h1>
    <table>
 	   <tr>
-	       <td>Enter User Name:  </td>
-	       <td><input type="text" id="user" name="user" size="10"/>  </td>
+	       <td>User Name :  </td>
+	       <td><input type="text" id="user" name="user" size="30"/> </td>
+	   </tr>
+	   <tr>
+	      <td>Enter Password : </td>
+	       <td><input type="text" id="pass"  name="pass" size="30"/> </td>
 	   </tr>
 	
 	   <tr>
-	       <td>Enter password : </td>
-	       <td><input type="text" id="password" name="password" size="20"/> </td>
+	       <td>Choose Login Type : </td>
+	       <td><select id="type" name="type"> 
+				<option value="ADMIN"> ADMIN </option>
+				<option value="USER"> USER </option>
+				<option value="COMPANY"> COMPANY </option>
+				</select>
+	       </td>
 	   </tr>
 	   
 	   <tr>
-	       <td>Choose Login Type : </td>
-	       <td><select name="type" id="type">
-	       		<option value"ADMID" selected > ADMIN </option>
-	       		<option value"CUSTOMER"  > CUSTOMER </option>
-	       		<option value"COMPANY"  > COMPANY </option>
-	       </select>  <input type="button" value=" Login! " onclick="getComp()"/></td>
+	       <td><B><input type="button" value="Login !" onclick="Login()"/></B> </td>
 	   </tr>
+	   
+
    </table>
-   
   </body>
 </html>
   
