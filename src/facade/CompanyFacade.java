@@ -89,7 +89,7 @@ public class CompanyFacade implements CouponClientFacade{
 		return null;
 	}
 	
-	public Collection<Coupon> getCouponByPrice(Date endDate){
+	public Collection<Coupon> getCouponByDate(Date endDate){
 		if(this.login)
 			return this.companyDao.getCouponsByDate(company, endDate);
 		return null;

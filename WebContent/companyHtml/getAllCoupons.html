@@ -17,8 +17,51 @@ function getAllCoupons (){
 		xmlhttp.onreadystatechange=function(){
 			if(xmlhttp.readyState == 4){
 				if(xmlhttp.status == 200){
+					//var det= eval("(" + xmlhttp.responseText+")");
 					
-					var det= eval("(" + xmlhttp.responseText+")");	
+					var coupons=document.getElementsByTagName('div')[0];
+					var tbl     = document.createElement("table");
+			        var tblBody = document.createElement("tbody");
+			        //Header Table
+			        var row = document.createElement("tr");
+			        var headers=["ID","Title","StartDate","EndDate","Amount","Type","Message","Price","Image"];
+			        
+			        for (i = 0; i < headers.length; i++) {
+				        var cell = document.createElement("th");    
+		                var cellText = document.createTextNode(headers[i]);
+		                cell.appendChild(cellText);
+		                row.appendChild(cell);
+			        }
+			        //Add line to table Boday
+			        tblBody.appendChild(row);
+			        //FINISH TABLE HEADER
+			        //START TABLE BODY
+			        var obj = JSON.parse(xmlhttp.responseText);
+			        var headers=["id","title","startdate","enddate","amount","type","message","price","image"];
+			        for (i=0;i < obj.length;i++){
+			        	//alert (obj[i].id )
+			        	var row = document.createElement("tr");
+			        	for (j=0;j < headers.length;j++){
+					        var cell = document.createElement("td"); 
+					        var temp=obj[i][headers[j]];
+			                var cellText = document.createTextNode(temp);
+			                //alert(temp);
+			    
+			                cell.appendChild(cellText);
+			                row.appendChild(cell);
+			        	}
+			        	tblBody.appendChild(row);
+			        	//alert(id);
+			        }
+			        
+			        //END TABLE BODY
+			     	// append the <tbody> inside the <table>
+			        tbl.appendChild(tblBody);
+			        // put <table> in the <body>
+			        //alert(xmlhttp.responseText);
+			        companies.appendChild(tbl);
+			        // tbl border attribute to 
+			        tbl.setAttribute("border", "2");
 				}
 				else { 
 					
@@ -37,8 +80,52 @@ function getCouponByType(){
 	xmlhttp.onreadystatechange=function(){
 		if(xmlhttp.readyState == 4){
 			if(xmlhttp.status == 200){
+				//var det= eval("(" + xmlhttp.responseText+")");
 				
-				var det= eval("(" + xmlhttp.responseText+")");	
+				var coupons=document.getElementsByTagName('div')[0];
+				var tbl     = document.createElement("table");
+		        var tblBody = document.createElement("tbody");
+		        //Header Table
+		        var row = document.createElement("tr");
+			    var headers=["ID","Title","StartDate","EndDate","Amount","Type","Message","Price","Image"];
+			        
+			    for (i = 0; i < headers.length; i++) {
+			        var cell = document.createElement("th");    
+	                var cellText = document.createTextNode(headers[i]);
+	                cell.appendChild(cellText);
+		            row.appendChild(cell);
+			    }
+				//Add line to table Boday
+			    tblBody.appendChild(row);
+		        //FINISH TABLE HEADER
+		        //START TABLE BODY
+		        var obj = JSON.parse(xmlhttp.responseText);
+				var headers=["id","title","startdate","enddate","amount","type","message","price","image"];
+			    for (i=0;i < obj.length;i++){
+		        	//alert (obj[i].id )
+		        	var row = document.createElement("tr");
+		        	for (j=0;j < headers.length;j++){
+					        var cell = document.createElement("td"); 
+					        var temp=obj[i][headers[j]];
+			                var cellText = document.createTextNode(temp);
+			                //alert(temp);
+			    
+			                cell.appendChild(cellText);
+			                row.appendChild(cell);
+			        	}
+			        	tblBody.appendChild(row);
+			        	//alert(id);
+			        }
+			        
+			        //END TABLE BODY
+			     	// append the <tbody> inside the <table>
+			        tbl.appendChild(tblBody);
+			        // put <table> in the <body>
+			        //alert(xmlhttp.responseText);
+			        companies.appendChild(tbl);
+			        // tbl border attribute to 
+			        tbl.setAttribute("border", "2");
+
 			}
 			else { 
 				
@@ -57,8 +144,51 @@ function getCouponByPrice(){
 	xmlhttp.onreadystatechange=function(){
 		if(xmlhttp.readyState == 4){
 			if(xmlhttp.status == 200){
+				//var det= eval("(" + xmlhttp.responseText+")");
 				
-				var det= eval("(" + xmlhttp.responseText+")");	
+							var coupons=document.getElementsByTagName('div')[0];
+					var tbl     = document.createElement("table");
+			        var tblBody = document.createElement("tbody");
+			        //Header Table
+			        var row = document.createElement("tr");
+			        var headers=["ID","Title","StartDate","EndDate","Amount","Type","Message","Price","Image"];
+			        
+			        for (i = 0; i < headers.length; i++) {
+				        var cell = document.createElement("th");    
+		                var cellText = document.createTextNode(headers[i]);
+		                cell.appendChild(cellText);
+		                row.appendChild(cell);
+			        }
+			        //Add line to table Boday
+			        tblBody.appendChild(row);
+			        //FINISH TABLE HEADER
+			        //START TABLE BODY
+			        var obj = JSON.parse(xmlhttp.responseText);
+			        var headers=["id","title","startdate","enddate","amount","type","message","price","image"];
+			        for (i=0;i < obj.length;i++){
+			        	//alert (obj[i].id )
+			        	var row = document.createElement("tr");
+			        	for (j=0;j < headers.length;j++){
+					        var cell = document.createElement("td"); 
+					        var temp=obj[i][headers[j]];
+			                var cellText = document.createTextNode(temp);
+			                //alert(temp);
+			    
+			                cell.appendChild(cellText);
+			                row.appendChild(cell);
+			        	}
+			        	tblBody.appendChild(row);
+			        	//alert(id);
+			        }
+			        
+			        //END TABLE BODY
+			     	// append the <tbody> inside the <table>
+			        tbl.appendChild(tblBody);
+			        // put <table> in the <body>
+			        //alert(xmlhttp.responseText);
+			        companies.appendChild(tbl);
+			        // tbl border attribute to 
+			        tbl.setAttribute("border", "2");
 			}
 			else { 
 				
@@ -77,16 +207,58 @@ function getCouponByEndDate(){
 	xmlhttp.onreadystatechange=function(){
 		if(xmlhttp.readyState == 4){
 			if(xmlhttp.status == 200){
+				//var det= eval("(" + xmlhttp.responseText+")");
 				
-				var det= eval("(" + xmlhttp.responseText+")");	
+							var coupons=document.getElementsByTagName('div')[0];
+					var tbl     = document.createElement("table");
+			        var tblBody = document.createElement("tbody");
+			        //Header Table
+			        var row = document.createElement("tr");
+			        var headers=["ID","Title","StartDate","EndDate","Amount","Type","Message","Price","Image"];
+			        
+			        for (i = 0; i < headers.length; i++) {
+				        var cell = document.createElement("th");    
+		                var cellText = document.createTextNode(headers[i]);
+		                cell.appendChild(cellText);
+		                row.appendChild(cell);
+			        }
+			        //Add line to table Boday
+			        tblBody.appendChild(row);
+			        //FINISH TABLE HEADER
+			        //START TABLE BODY
+			        var obj = JSON.parse(xmlhttp.responseText);
+			        var headers=["id","title","startdate","enddate","amount","type","message","price","image"];
+			        for (i=0;i < obj.length;i++){
+			        	//alert (obj[i].id )
+			        	var row = document.createElement("tr");
+			        	for (j=0;j < headers.length;j++){
+					        var cell = document.createElement("td"); 
+					        var temp=obj[i][headers[j]];
+			                var cellText = document.createTextNode(temp);
+			                //alert(temp);
+			    
+			                cell.appendChild(cellText);
+			                row.appendChild(cell);
+			        	}
+			        	tblBody.appendChild(row);
+			        	//alert(id);
+			        }
+			        
+			        //END TABLE BODY
+			     	// append the <tbody> inside the <table>
+			        tbl.appendChild(tblBody);
+			        // put <table> in the <body>
+			        //alert(xmlhttp.responseText);
+			        companies.appendChild(tbl);
+			        // tbl border attribute to 
+			        tbl.setAttribute("border", "2");
+
 			}
 			else { 
 				
 				alert("Error -->" +xmlhttp.responseText);
 			}
-		}
-		
-		
+		}		
 	}
 }
 </script>
@@ -95,24 +267,12 @@ function getCouponByEndDate(){
 <body onload="init()">
 
 	<h1>Call Company Service</h1>
-	 <table>
-	 	<tr>
-	 		<td><input type="button" value="Get All Coupons" onClick="getAllCoupons()"/>
-	 	</tr>	
-	 	
-	 	<tr>
-	 		<td><input type="button" value="Get All Coupons By Type" onClick="getCouponByType()"/>
-	 	</tr>
-	 	
-	 	<tr>
-	 		<td><input type="button" value="Get All Coupons By Price" onClick="getCouponByPrice()"/>
-	 	</tr>
-	 	
-	 	<tr>
-	 		<td><input type="button" value="Get All Coupons By End Date" onClick="getCouponByEndDate()"/>
-	 	</tr>
-	 	
-	 </table>
-
+	 	<input type="button" value="Get All Coupons" onClick="getAllCoupons()"/>
+	 	<input type="button" value="Get All Coupons By Type" onClick="getCouponByType()"/>
+	 	<input type="button" value="Get All Coupons By Price" onClick="getCouponByPrice()"/>
+	 	<input type="button" value="Get All Coupons By End Date" onClick="getCouponByEndDate()"/>
+	 	<div id="coupons">
+	
+		</div>
 </body>
 </html>

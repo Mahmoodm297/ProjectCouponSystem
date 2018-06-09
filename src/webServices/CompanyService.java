@@ -2,7 +2,9 @@ package webServices;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -13,6 +15,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+
+import com.google.gson.Gson;
 
 import facade.ClientType;
 import facade.CompanyFacade;
@@ -128,6 +132,81 @@ public class CompanyService {
 			coupon=company.getCoupon(id);
 			company.removeCoupon(coupon);
 		}
+	
+	@GET 
+	@Path("/getallcoupons")
+	@Produces(MediaType.TEXT_PLAIN)
+	
+	public String getAllCoupon() {
+		System.out.println("server side");
+		Gson gson = new Gson();
+		String retString = null;
 		
-	 
+		List<Coupon> couponList= new ArrayList<Coupon>();
+		//adminFacade admin= new adminFacade();
+		couponList=(List<Coupon>) company.getAllCoupon();
+		retString = gson.toJson(couponList);
+		System.out.println(retString);
+		return retString;
+	}
+	
+	@GET 
+	@Path("/getcouponbytype")
+	@Produces(MediaType.TEXT_PLAIN)
+	
+	public String getCouponByType(@QueryParam("type")CouponType type) {
+		System.out.println("server side");
+		Gson gson = new Gson();
+		String retString = null;
+		
+		List<Coupon> couponList= new ArrayList<Coupon>();
+		//adminFacade admin= new adminFacade();
+		couponList=(List<Coupon>) company.getCouponByType(type);
+		retString = gson.toJson(couponList);
+		System.out.println(retString);
+		return retString;
+	}
+	
+	@GET 
+	@Path("/getcouponbyprice")
+	@Produces(MediaType.TEXT_PLAIN)
+	
+	public String getCouponByPrice(@QueryParam("price")double price) {
+		System.out.println("server side");
+		Gson gson = new Gson();
+		String retString = null;
+		
+		List<Coupon> couponList= new ArrayList<Coupon>();
+		//adminFacade admin= new adminFacade();
+		couponList=(List<Coupon>) company.getCouponByPrice(price);
+		retString = gson.toJson(couponList);
+		System.out.println(retString);
+		return retString;
+	}
+	
+	@GET 
+	@Path("/getcouponbyenddate")
+	@Produces(MediaType.TEXT_PLAIN)
+	
+	public String getCouponByDate(@QueryParam("enddate")String enddate) {
+		System.out.println("server side");
+		Gson gson = new Gson();
+		String retString = null;
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		Date eDate = null;
+		try {
+			eDate = format.parse(enddate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		List<Coupon> couponList= new ArrayList<Coupon>();
+		//adminFacade admin= new adminFacade();
+		couponList=(List<Coupon>) company.getCouponByDate(eDate);
+		retString = gson.toJson(couponList);
+		System.out.println(retString);
+		return retString;
+	}
 }
