@@ -11,9 +11,9 @@
 		xmlhttp=new XMLHttpRequest ();
 	}
 	function removeDetails (){
-		
-		var coupon=document.getElementById("coouponId");
-		var url = "http://localhost:8080/Coupons/rest/adminServices/"+coupon.value;
+		alert("Remove");
+		var coupon=document.getElementById("couponId");
+		var url = "http://localhost:8080/Coupons/rest/companyService/dellCoupon?id="+coupon.value;
 		xmlhttp.open('DELETE', url, true);
 		xmlhttp.send(null);	
 }

@@ -11,8 +11,9 @@
 		xmlhttp=new XMLHttpRequest ();
 	}
 function getDetails (){
-		var coupon=document.getElementById("coouponId");
-		var url = "http://localhost:8080/Coupons/rest/companyService/getCoupon?coouponId="+coupon.value;
+		var coupon=document.getElementById("couponId");
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/companyService/getcoupon?couponId="+coupon.value;
+		alert(url);
 		xmlhttp.open('GET', url, true);
 		xmlhttp.send(null);
 		xmlhttp.onreadystatechange=function(){
@@ -24,15 +25,14 @@ function getDetails (){
 			var type=document.getElementById("type");
 			var message=document.getElementById("message");
 			var price=document.getElementById("price");
-			var image=document.getElementById("image");
-
+			var image=document.getElementById("image"); 
 			if(xmlhttp.readyState == 4){
+				alert(xmlhttp.status);
 				if(xmlhttp.status == 200){
-					
+					alert("c");
 					var det= eval("(" + xmlhttp.responseText+")");	
-					if(comp.value > 0){
-			
-						coupontitle.value=det.title;
+					if(coupon.value > 0){		
+						coupontitle.value=det.coupontitle;
 						startdate.value=det.startdate;
 						enddate.value=det.enddate;
 						amount.value=det.amount;
@@ -42,14 +42,14 @@ function getDetails (){
 						image.value=det.image;
 					}
 					else{
-						compname.value="";
+						coupontitle.value="";
 						startdate.value="";
 						enddate.value="";
-						amount.value=det;
-						type.value=det.""";
-						message.value=det."";
-						price.value=det.""";
-						image.value=det."";
+						amount.value="";
+						type.value="";
+						message.value="";
+						price.value="";
+						image.value="";
 						aler(" Invalid Coupon Id ");
 					}
 				}
@@ -71,7 +71,7 @@ function getDetails (){
 	 <table>
 	 	<tr>
 	 		<td>Enter CouponId</td>
-	 		<td><input type="text" id="couponId" size="10" /> <input type="button" value="Get Info" onClick="getDetails()"/>
+	 		<td><input type="text" id="couponId" size="17" /> <input type="button" value="Get Info" onClick="getDetails()"/>
 	 	</tr>	
 	 	
 	 	<tr>
@@ -115,6 +115,5 @@ function getDetails (){
 	 	</tr>
 	 	
 	 </table>
-
 </body>
 </html>

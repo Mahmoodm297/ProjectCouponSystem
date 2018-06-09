@@ -23,10 +23,10 @@
 		var message=document.getElementById("message");
 		var price=document.getElementById("price");
 		var image=document.getElementById("image");
-		var url = "http://localhost:8080/Coupons/rest/adminServices/updatecoupon?id="+compid.value+
+		var url = "http://localhost:8080/Coupons/rest/companyService/updatecoupon?id="+coupon.value+
 				"&coupontitle="+coupontitle.value+"&startdate="+startdate.value+"&enddate="+enddate.value+
 				"&amount="+amount.value+"&type="+type.value+ "&message="+message.value+
-				"&price="+enddate.value+"&image="+image.value;
+				"&price="+price.value+"&image="+image.value;
 		alert(url);
 		xmlhttp.open('PUT', url, true);
 		xmlhttp.send(null);
@@ -39,7 +39,7 @@
 	 <table>
 	 	<tr>
 	 		<td>Enter CouponId</td>
-	 		<td><input type="text" id="couponId" size="10" /></td>
+	 		<td><input type="text" id="couponId" size="30" /></td>
 	 	</tr>	
 	 	
 	 	<tr>
@@ -48,33 +48,33 @@
 	 	</tr>
 	 	
 	 	<tr>
-	 		<td>Coupon start date</td>
+	 		<td>Enter Coupon start date (Must be in format YYYY-MM-DD)</td>
 	 		<td><input type="text" id="startdate" size="30"/></td>
 	 	</tr>
 	 	
 	 	<tr>
-	 		<td>Enter Coupon end date</td>
-	 		<td><input type="password" id="enddate" size="30"/></td>
+	 		<td>Enter Coupon end date (Must be in format YYYY-MM-DD)</td>
+	 		<td><input type="text" id="enddate" size="30"/></td>
 	 	</tr>
 	 	
 	 	<tr>
 	 		<td>Enter Coupon amount</td>
-	 		<td><input type="password" id="amount" size="30"/></td>
+	 		<td><input type="text" id="amount" size="30"/></td>
 	 	</tr>
 	 	
 	 	<tr>
 	 		<td>Enter message</td>
-	 		<td><input type="password" id="message" size="30"/></td>
+	 		<td><input type="text" id="message" size="30"/></td>
 	 	</tr>
 	 	
 	 	<tr>
 	 		<td>Enter Coupon price</td>
-	 		<td><input type="password" id="price" size="30"/></td>
+	 		<td><input type="text" id="price" size="30"/></td>
 	 	</tr>
 	 	
 	 	<tr>
 	 		<td>Enter image</td>
-	 		<td><input type="password" id="image" size="30"/><input type="button" value="Update Coupon Info" onClick="updateDetails()"/>
+	 		<td><input type="text" id="image" size="30"/><input type="button" value="Update Coupon Info" onClick="updateDetails()"/>
 	 	</tr>
 	 </table>
 
