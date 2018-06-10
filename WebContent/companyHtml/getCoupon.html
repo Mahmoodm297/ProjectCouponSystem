@@ -13,7 +13,7 @@
 function getDetails (){
 		var coupon=document.getElementById("couponId");
 		var url = "http://localhost:8080/ProjectCouponSystem/rest/companyService/getcoupon?couponId="+coupon.value;
-		alert(url);
+		//alert(url);
 		xmlhttp.open('GET', url, true);
 		xmlhttp.send(null);
 		xmlhttp.onreadystatechange=function(){

@@ -13,7 +13,7 @@
 	function removeDetails (){
 		alert("Remove");
 		var coupon=document.getElementById("couponId");
-		var url = "http://localhost:8080/Coupons/rest/companyService/dellCoupon?id="+coupon.value;
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/companyService/dellCoupon?id="+coupon.value;
 		xmlhttp.open('DELETE', url, true);
 		xmlhttp.send(null);	
 }

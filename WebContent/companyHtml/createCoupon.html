@@ -22,7 +22,7 @@
 		var message=document.getElementById("message");
 		var price=document.getElementById("price");
 		var image=document.getElementById("image");
-		var url = "http://localhost:8080/Coupons/rest/companyService/createcoupon?id="+coupon.value+
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/companyService/createcoupon?id="+coupon.value+
 				"&coupontitle="+coupontitle.value+"&startdate="+startdate.value+"&enddate="+enddate.value+
 				"&amount="+amount.value+"&type="+type.value+ "&message="+message.value+
 				"&price="+price.value+"&image="+image.value;
@@ -64,7 +64,18 @@
 	 	
 	 	<tr>
 	 		<td>Enter Coupon type</td>
-	 		<td><input type="text" id="type" size="30"/></td>
+	 		<td><select>
+            	<option value="null"></option>
+            	<option value="RESTURANTS">RESTURANTS</option>
+  				<option value="ELECTRICITY">ELECTRICITY</option>
+  				<option value="CLOTHING">CLOTHING</option>
+  				<option value="FOOD">FOOD</option>
+  				<option value="HEALTH">HEALTH</option>
+  				<option value="TRAVELLING">TRAVELLING</option>
+  				<option value="HOTELS">HOTELS</option>
+  				<option value="CAMPING">CAMPING</option>
+  				<option value="SPORTS">SPORTS</option>
+			</select></td>
 	 	</tr>
 	 	
 	 	<tr>
