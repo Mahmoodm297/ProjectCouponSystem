@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Get Coupon</title>
+<script> 
+
+	var xmlhttp;
+	function init (){
+		
+		xmlhttp=new XMLHttpRequest ();
+	}
+function buyCoupon (){
+		var coupon=document.getElementById("couponTitle");
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/customerService/buycoupon?couponTitle="+coupon.value;
+		//alert(url);
+		xmlhttp.open('POST',url, true);
+		xmlhttp.send(null);
+		alert("SENT");
+}
+</script>
+</head>
+
+<body onload="init()">
+
+	<h1>Call Customer Service</h1>
+	 <table>
+	 	<tr>
+	 		<td>Enter Coupon Title</td>
+	 		<td><input type="text" id="couponTitle" size="17" /> <input type="button" value="Buy Coupon" onClick="buyCoupon()"/>
+	 	</tr>	
+	 </table>
+</body>
+</html>

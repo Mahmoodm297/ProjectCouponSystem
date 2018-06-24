@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Get All Coupons</title>
+<script> 
+
+	var xmlhttp;
+	function init (){
+		
+		xmlhttp=new XMLHttpRequest ();
+	}
+function getAllCoupons (){
+		alert("All purchased coupons");
+		var url = "http://localhost:8080/ProjectCouponSystem/rest/customerService/getallcoupons";
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send(null);
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState == 4){
+				if(xmlhttp.status == 200){
+					//var det= eval("(" + xmlhttp.responseText+")");
+					
+					var coupons=document.getElementsByTagName('div')[0];
+					var tbl     = document.createElement("table");
+			        var tblBody = document.createElement("tbody");
+			        //Header Table
+			        var row = document.createElement("tr");
+			        var headers=["ID","Title","StartDate","EndDate","Amount","Type","Message","Price","Image"];
+			        
+			        for (i = 0; i < headers.length; i++) {
+				        var cell = document.createElement("th");    
+		                var cellText = document.createTextNode(headers[i]);
+		                cell.appendChild(cellText);
+		                row.appendChild(cell);
+			        }
+			        //Add line to table Boday
+			        tblBody.appendChild(row);
+			        //FINISH TABLE HEADER
+			        //START TABLE BODY
+			        var obj = JSON.parse(xmlhttp.responseText);
+			        var headers=["id","title","startdate","enddate","amount","type","message","price","image"];
+			        for (i=0;i < obj.length;i++){
+			        	//alert (obj[i].id )
+			        	var row = document.createElement("tr");
+			        	for (j=0;j < headers.length;j++){
+					        var cell = document.createElement("td"); 
+					        var temp=obj[i][headers[j]];
+			                var cellText = document.createTextNode(temp);
+			                //alert(temp);
+			    
+			                cell.appendChild(cellText);
+			                row.appendChild(cell);
+			        	}
+			        	tblBody.appendChild(row);
+			        	//alert(id);
+			        }
+			        
+			        //END TABLE BODY
+			     	// append the <tbody> inside the <table>
+			        tbl.appendChild(tblBody);
+			        // put <table> in the <body>
+			        //alert(xmlhttp.responseText);
+			        companies.appendChild(tbl);
+			        // tbl border attribute to 
+			        tbl.setAttribute("border", "2");
+				}
+				else { 
+					
+					alert("Error -->" +xmlhttp.responseText);
+				}
+			}
+			
+			
+		}
+}
+
+function getCouponByType(){
+	var coupon=document.getElementById("type");
+	alert(coupon.value);
+	var url = "http://localhost:8080/Coupons/rest/customerService/getcouponbytype?couponType="+coupon.value";
+	xmlhttp.open('GET', url, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200){
+				//var det= eval("(" + xmlhttp.responseText+")");
+				
+				var coupons=document.getElementsByTagName('div')[0];
+				var tbl     = document.createElement("table");
+		        var tblBody = document.createElement("tbody");
+		        //Header Table
+		        var row = document.createElement("tr");
+			    var headers=["ID","Title","StartDate","EndDate","Amount","Type","Message","Price","Image"];
+			        
+			    for (i = 0; i < headers.length; i++) {
+			        var cell = document.createElement("th");    
+	                var cellText = document.createTextNode(headers[i]);
+	                cell.appendChild(cellText);
+		            row.appendChild(cell);
+			    }
+				//Add line to table Boday
+			    tblBody.appendChild(row);
+		        //FINISH TABLE HEADER
+		        //START TABLE BODY
+		        var obj = JSON.parse(xmlhttp.responseText);
+				var headers=["id","title","startdate","enddate","amount","type","message","price","image"];
+			    for (i=0;i < obj.length;i++){
+		        	//alert (obj[i].id )
+		        	var row = document.createElement("tr");
+		        	for (j=0;j < headers.length;j++){
+					        var cell = document.createElement("td"); 
+					        var temp=obj[i][headers[j]];
+			                var cellText = document.createTextNode(temp);
+			                //alert(temp);
+			    
+			                cell.appendChild(cellText);
+			                row.appendChild(cell);
+			        	}
+			        	tblBody.appendChild(row);
+			        	//alert(id);
+			        }
+			        
+			        //END TABLE BODY
+			     	// append the <tbody> inside the <table>
+			        tbl.appendChild(tblBody);
+			        // put <table> in the <body>
+			        //alert(xmlhttp.responseText);
+			        companies.appendChild(tbl);
+			        // tbl border attribute to 
+			        tbl.setAttribute("border", "2");
+
+			}
+			else { 
+				
+				alert("Error -->" +xmlhttp.responseText);
+			}
+		}
+		
+		
+	}
+}
+
+function getCouponByPrice(){
+	var coupon=document.getElementById("price");
+	alert(coupon.value);
+	var url = "http://localhost:8080/Coupons/rest/customerService/getcouponbyprice?couponPrice="+coupon.value";
+	xmlhttp.open('GET', url, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200){
+				//var det= eval("(" + xmlhttp.responseText+")");
+				
+							var coupons=document.getElementsByTagName('div')[0];
+					var tbl     = document.createElement("table");
+			        var tblBody = document.createElement("tbody");
+			        //Header Table
+			        var row = document.createElement("tr");
+			        var headers=["ID","Title","StartDate","EndDate","Amount","Type","Message","Price","Image"];
+			        
+			        for (i = 0; i < headers.length; i++) {
+				        var cell = document.createElement("th");    
+		                var cellText = document.createTextNode(headers[i]);
+		                cell.appendChild(cellText);
+		                row.appendChild(cell);
+			        }
+			        //Add line to table Boday
+			        tblBody.appendChild(row);
+			        //FINISH TABLE HEADER
+			        //START TABLE BODY
+			        var obj = JSON.parse(xmlhttp.responseText);
+			        var headers=["id","title","startdate","enddate","amount","type","message","price","image"];
+			        for (i=0;i < obj.length;i++){
+			        	//alert (obj[i].id )
+			        	var row = document.createElement("tr");
+			        	for (j=0;j < headers.length;j++){
+					        var cell = document.createElement("td"); 
+					        var temp=obj[i][headers[j]];
+			                var cellText = document.createTextNode(temp);
+			                //alert(temp);
+			    
+			                cell.appendChild(cellText);
+			                row.appendChild(cell);
+			        	}
+			        	tblBody.appendChild(row);
+			        	//alert(id);
+			        }
+			        
+			        //END TABLE BODY
+			     	// append the <tbody> inside the <table>
+			        tbl.appendChild(tblBody);
+			        // put <table> in the <body>
+			        //alert(xmlhttp.responseText);
+			        companies.appendChild(tbl);
+			        // tbl border attribute to 
+			        tbl.setAttribute("border", "2");
+			}
+			else { 
+				
+				alert("Error -->" +xmlhttp.responseText);
+			}
+		}
+		
+		
+	}
+}
+</script>
+</head>
+
+<body onload="init()">
+
+	<h1>Call Customer Service</h1>
+	
+	<table>
+	   <tr>
+	       <td><input type="button" value="Get All Coupons" onClick="getAllCoupons()"/><br> </td>
+	   </tr>
+	   <tr>
+	      <td><input type="text" id="price"  name="price" size="14"/></td>
+	       <td><input type="button" value="Get All Coupons By Price" onClick="getCouponByPrice()"/><br></td>
+	   </tr>
+	
+	   <tr>
+	       <td>	<select id=type>
+           		<option value="null"></option>
+           		<option value="RESTURANTS">RESTURANTS</option>
+  				<option value="ELECTRICITY">ELECTRICITY</option>
+				<option value="CLOTHING">CLOTHING</option>
+  				<option value="FOOD">FOOD</option>
+  				<option value="HEALTH">HEALTH</option>
+  				<option value="TRAVELLING">TRAVELLING</option>
+  				<option value="HOTELS">HOTELS</option>
+  				<option value="CAMPING">CAMPING</option>
+  				<option value="SPORTS">SPORTS</option>
+  			</select>
+  			</td>
+	       <td><input type="button" value="Get All Coupons By Type" onClick="getCouponByType()"/></td>
+	   </tr>
+   </table>
+	 	
+</body>
+</html>
