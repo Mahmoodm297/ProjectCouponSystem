@@ -7,13 +7,10 @@
 
 	var xmlhttp;
 	function init() {
-		
 		xmlhttp=new XMLHttpRequest ();
-		alert("xml");
 	}
 	
 	function updateDetails(){
-		alert("update");
 		var coupon=document.getElementById("coouponId");
 		var coupontitle=document.getElementById("coupontitle");
 		var startdate=document.getElementById("startdate");
@@ -27,7 +24,7 @@
 				"&coupontitle="+coupontitle.value+"&startdate="+startdate.value+"&enddate="+enddate.value+
 				"&amount="+amount.value+"&type="+type.value+ "&message="+message.value+
 				"&price="+price.value+"&image="+image.value;
-		alert(url);
+		
 		xmlhttp.open('PUT', url, true);
 		xmlhttp.send(null);
 }	

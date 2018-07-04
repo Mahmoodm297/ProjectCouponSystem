@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Welcome Company</title>
+<script>
+
+	var xmlhttp;
+	function init() {
+		
+		xmlhttp=new XMLHttpRequest ();
+		xmlhttp.setRquestHeader('Content-Type','application/json');
+		//alert("xml");
+	}
+	
+	function redirect(){
+		var location = document.getElementById("location");
+		
+		switch (location.value){
+		case 'CREATE':
+			url = "http://localhost:8080/ProjectCouponSystem/companyHtml/createCoupon.html";
+			break;
+		case 'GET':
+			url = "http://localhost:8080/ProjectCouponSystem/companyHtml/getCoupon.html";
+			break;
+		case 'GETALL':
+			url = "http://localhost:8080/ProjectCouponSystem/companyHtml/getAllCoupons.html";
+			break;
+		case 'REMOVE':
+			url = "http://localhost:8080/ProjectCouponSystem/companyHtml/removeCoupon.html";
+			break;
+		case 'UPDATE':
+			url = "http://localhost:8080/ProjectCouponSystem/companyHtml/updateCoupon.html";
+			break;
+		}
+		
+		window.location.href = url;
+	}	
+</script>
+</head>
+  
+ <body  onload="init()">
+   <h1>Welcome Company</h1>
+   <table>
+	   <tr>
+	        <td>What do you want to do:</td>
+	        <td><select id="location" name="type"> 
+				<option value="CREATE"> Create Coupon </option>
+				<option value="GET"> Get Coupon </option>
+				<option value="GETALL"> Get All Coupons </option>
+				<option value="REMOVE"> Remove Coupon </option>
+				<option value="UPDATE"> Update Coupon </option>
+				</select>
+	       </td>
+	   </tr>
+	   <tr>
+	    <td><B><input type="button" value="go" onclick="redirect()"/></B> </td>
+	   </tr>
+   </table>
+  </body>
+</html>
+  

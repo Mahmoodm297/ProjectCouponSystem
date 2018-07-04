@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Welcome</title>
+<script type="text/javascript">
+ 
+ 	var xmlhttp;
+	//function init() {
+		xmlhttp=new XMLHttpRequest ();
+		
+	//}
+	
+	function login(){
+		var type = document.getElementById("type");
+		var user = document.getElementById("user");
+		var pass = document.getElementById("pass");
+		var url="http://localhost:8080/ProjectCouponSystem/LoginHtml/SimpleLogin.html";
+		switch (type.value){
+			case 'ADMIN':
+				if (user.value == "admin"){
+					if (pass.value == "admin123"){
+						url = "http://localhost:8080/ProjectCouponSystem/adminHtml/AdminMain.html";
+					}
+					else {
+						alert("Username or Password is wrong!!");
+					}
+				} 
+				else {
+					alert("Username or Password is wrong!!");
+				}
+				break;
+			case 'COMPANY':
+				if (user.value == "company"){
+					if(pass.value == "comp123"){
+						url = "http://localhost:8080/ProjectCouponSystem/companyHtml/CompanyMain.html";
+					}
+					else {
+						alert("Username or Password is wrong!!");
+					}
+				} 
+				else {
+					alert("Username or Password is wrong!!");
+				}
+				break;
+			case 'USER':
+				if (user.value == "user"){
+					if(pass.value == "user123"){
+						url = "http://localhost:8080/ProjectCouponSystem/customerHtml/CustomerMain.html";
+					}
+					else {
+						alert("Username or Password is wrong!!");
+					}
+				} 
+				else {
+					alert("Username or Password is wrong!!");
+				}
+				break;
+		}
+		window.location.href = url;	
+
+		
+		
+	}	
+</script>
+</head>
+  
+ <body>
+   <h1>Welcome to Coupon System</h1>
+   <table>
+	   <tr>
+	       <td>User Name :  </td>
+	       <td><input type="text" id="user" name="user" size="30"/> </td>
+	   </tr>
+	   <tr>
+	      <td>Enter Password : </td>
+	       <td><input type="password" id="pass"  name="pass" size="30"/> </td>
+	   </tr>
+	
+	   <tr>
+	       <td>Choose Login Type : </td>
+	       <td><select id="type" name="type"> 
+				<option value="ADMIN"> ADMIN </option>
+				<option value="COMPANY"> COMPANY </option>
+				<option value="USER"> USER </option>
+				</select>
+	       </td>
+	   </tr>
+	   
+	   <tr>
+	       <td><B><input type="button" value="login" onclick="login()"/></B> </td>
+	   </tr>
+   </table>
+  </body>
+</html>
+  

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Welcome Customer</title>
+<script>
+
+	var xmlhttp;
+	function init() {
+		xmlhttp=new XMLHttpRequest ();
+	}
+	
+	function redirect(){
+		var location = document.getElementById("location");
+		
+		switch (location.value){
+		case 'BUY':
+			url = "http://localhost:8080/ProjectCouponSystem/customerHtml/buyCoupon.html";
+			break;
+		case 'GET':
+			url = "http://localhost:8080/ProjectCouponSystem/customerHtml/getPurchasedCoupons.html";
+			break;
+		}
+		
+		window.location.href = url;
+	}	
+</script>
+</head>
+  
+ <body  onload="init()">
+   <h1>Welcome Company</h1>
+   <table>
+	   <tr>
+	        <td>What do you want to do:</td>
+	        <td><select id="location" name="type"> 
+				<option value="BUY"> Buy Coupon </option>
+				<option value="GET"> Get Purchased Coupons </option>
+				</select>
+	       </td>
+	   </tr>
+	   <tr>
+	    <td><B><input type="button" value="go" onclick="redirect()"/></B> </td>
+	   </tr>
+   </table>
+  </body>
+</html>
+  
